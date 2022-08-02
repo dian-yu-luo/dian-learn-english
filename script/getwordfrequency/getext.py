@@ -3,23 +3,36 @@ import sys
 import docx2txt
 
 
-# files, filepath, srcpath, dstpath
+def convertdocxtotext(src, dst):
+    print(src)
+    print(dst)
+    text = docx2txt.process(src)
+    with open(dst, "w", encoding="utf-8") as text_file:
+        text_file.write(text)
+        text_file.close()
 
+
+# files, filepath, srcpath, dstpath
 # 通过文件系统参数获得文件名, 然后进行处理
 filepath = sys.argv[1]
 files = os.listdir(filepath)
-# for i in files:
-#     print(i)
+
+for file in files:
+    filewithdocx = os.path.join(filepath, file)
+    # print(filewithdocx)
+    farpath = os.path.dirname(filepath)
+    truename = os.path.splitext(file)
+    dstpath = truename[0]+".txt"
+    dstpath = os.path.join(farpath, "text", dstpath)
+    convertdocxtotext(filewithdocx, dstpath)
 
 
-file = files[1]
-file=os.path.join(filepath,file)
+sys.exit()
+
+
 print(file)
-text=docx2txt.process(file)
 
 dstpath = "text"
-farpath = os.path.dirname(filepath)
-dstpath = os.path.join(farpath, dstpath)
 print(dstpath)
 
 if not os.path.exists(dstpath):
@@ -28,5 +41,5 @@ if not os.path.exists(dstpath):
 dstfile = os.path.join(dstpath, "output.txt")
 
 
-with open(dstfile, "w", encoding="utf-8") as text_file:
-    text_file.write(text)
+# with open(dstfile, "w", encoding="utf-8") as text_file:
+#     text_file.write(text)

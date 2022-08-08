@@ -1,19 +1,18 @@
 
 
-import sqlite3
-con = sqlite3.connect('example.db')
-cur = con.cursor()
+from time import sleep
+import nltk
 
-# Create table
-cur.execute('''CREATE TABLE stocks
-               (date text, trans text, symbol text, qty real, price real)''')
 
-# Insert a row of data
-cur.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
+def func():
+    srcfile = f"script/src/text"
+    with open("script/src/text/2009年历年考研英语真题.txt", "r", encoding="utf-8") as file:
+        content = file.read()
+        contents = content.split(sep="\n\n")
+        for i in contents:
+            if(len(i)>1):
+                sleep(0.1)
+                print(i)
 
-# Save (commit) the changes
-con.commit()
 
-# We can also close the connection if we are done with it.
-# Just be sure any changes have been committed or they will be lost.
-con.close()
+func()

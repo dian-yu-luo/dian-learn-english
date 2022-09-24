@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div>基本工具,用于讲解前后端交互</div>
+
+    <p id="demo"></p>
+
+
+
+    <script>
+        axios.defaults.baseURL = 'http://127.0.0.1:3000/';
+
+
+        axios.get('/get')
+            .then(function (response) {
+                // 处理成功情况
+                console.log(response);
+                console.log(response.data);
+                let demotext = response.data;
+                document.getElementById("demo").innerHTML = demotext
+            })
+            .catch(function (error) {
+                // 处理错误情况
+                console.log(error);
+                console.log("get method log didn't passed");
+            })
+            .then(function () {
+                // 总是会执行
+                // console.log("get method log passed");
+
+            });
+        axios.post('/post', {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+        })
+            .then(function (response) {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log("post error");
+            });
+
+
+
+    </script>
+</body>
+
+</html>

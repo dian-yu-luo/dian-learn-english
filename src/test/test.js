@@ -1,8 +1,10 @@
+var hello = require('../src/lib/sqlite');
+
 var assert = require('assert');
 
 describe('play', function () {
     it("play", () => {
-        console.log("this is a great func");
+        hello.world();
     })
     it('one point', function () {
         assert.equal([1, 2, 3].indexOf(4), -1);

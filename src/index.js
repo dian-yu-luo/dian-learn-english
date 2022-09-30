@@ -1,4 +1,7 @@
+
+const dianfs = require("./src/api/savefs").dianfs
 const express = require('express')
+const md5 =require("md5")
 const app = express()
 app.use(express.json())
 app.use(express.static('public'));
@@ -30,8 +33,8 @@ app.post("/submit-form", function (req, res) {
     res.send('submit-form pass');
     console.log(req.body);
 })
-app.post("/spilt",function (req,res) {
-    
+app.post("/spilt", function (req, res) {
+    dianfs.savetofile(md5(req.body.data), req.body.data);
     console.log(req.body.data);
 })
 

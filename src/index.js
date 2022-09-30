@@ -30,6 +30,10 @@ app.post("/submit-form", function (req, res) {
     res.send('submit-form pass');
     console.log(req.body);
 })
+app.post("/spilt",function (req,res) {
+    
+    console.log(req.body.data);
+})
 
 app.listen(3000, function (params) {
     console.log("http://127.0.0.1:3000/");
